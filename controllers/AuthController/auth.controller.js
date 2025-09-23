@@ -1,7 +1,9 @@
 import bcrypt from "bcryptjs";
 import User from "../../models/user.model.js";
 import jwt from "jsonwebtoken"
+import dotenv from "dotenv";
 
+dotenv.config();
 // REGISTER USER
 const registerUser = async (req, res) => {
   try {
@@ -65,7 +67,7 @@ const loginUser = async (req, res) => {
     const token = jwt.sign(
       { id: user._id, role: user.role }, // 👈 add role in token
       process.env.JWT_SECRET || "secretkey",
-      { expiresIn: "1h" }
+      { expiresIn: "7d" }
     );
 
     res.status(200).json({

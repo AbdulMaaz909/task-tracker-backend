@@ -1,5 +1,6 @@
 import axios from "axios"
-export const chatWithGemini = async (req, res) => {
+
+const chatWithGemini = async (req, res) => {
   try {
     const { message, history } = req.body;
     if (!message) {
@@ -19,8 +20,12 @@ export const chatWithGemini = async (req, res) => {
           parts: [{ text: message }],
         },
         // Optional previous messages to maintain context
-        ...(history || []),
+        ...(history || []),        
       ],
+      generationConfig: {
+    // maxOutputTokens: 60,   // roughly ~40–50 words
+    temperature: 0.7       // optional: keeps answers focused
+  }
     };
 
     const { data } = await axios.post(GEMINI_URL, payload, {
@@ -38,4 +43,7 @@ export const chatWithGemini = async (req, res) => {
       details: error.response?.data || error.message,
     });
   }
+};
+export {
+  chatWithGemini
 };

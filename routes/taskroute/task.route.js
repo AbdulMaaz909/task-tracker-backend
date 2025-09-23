@@ -17,6 +17,6 @@ router.get("/",verifyToken,getAllTasks);
 
 router.get("/mytask",verifyToken,getMyTasks);
 
-router.patch("/:id",verifyToken,updateTaskStatus);
+router.patch("/task/:id",verifyToken,updateTaskStatus);
 
 export default router;
