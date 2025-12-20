@@ -1,9 +1,11 @@
 import express from "express"
 import {
   createTask,
+  deleteTask,
   getAllTasks,
   getMyTasks,
   updateTaskStatus,
+  // deleteTask
 } from "../../controllers/TaskController/task.controller.js"
 
 import verifyToken  from "../../middleware/AuthMiddleware/auth.middleware.js";
@@ -11,12 +13,14 @@ import verifyToken  from "../../middleware/AuthMiddleware/auth.middleware.js";
 const router = express.Router();
 
 
-router.post("/", verifyToken, createTask);
+router.post("/createtask", verifyToken, createTask);
 
-router.get("/",verifyToken,getAllTasks);
+router.get("/getalltasks",verifyToken,getAllTasks);
 
-router.get("/mytask",verifyToken,getMyTasks);
+router.get("/getmytask",verifyToken,getMyTasks);
 
-router.patch("/task/:id",verifyToken,updateTaskStatus);
+router.patch("/updatetask/:id",verifyToken,updateTaskStatus);
 
-export default router;
+router.delete("/deletetask/:id",verifyToken, deleteTask)
+
+export default router;  

@@ -87,4 +87,15 @@ const loginUser = async (req, res) => {
 };
 
 
-export { registerUser, loginUser };
+const getAllUser = async (req,res) =>{
+  try{
+    const users = await User.find({},"_id name email");
+    res.json(users);
+  }catch(error){
+    console.error("Error fetching users:", error);
+    res.status(500).json({message: "Server error while fetching users"})
+  }
+};
+
+
+export { registerUser, loginUser ,getAllUser};
