@@ -20,6 +20,10 @@ const timesheetSchema = new mongoose.Schema({
     description: {
         type:String,
         required:true
+    },
+    date:{
+        type:Date,
+        required:true
     }
 },{timestamps:true});
 
