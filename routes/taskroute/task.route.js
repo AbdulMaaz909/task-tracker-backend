@@ -5,7 +5,6 @@ import {
   getAllTasks,
   getMyTasks,
   updateTaskStatus,
-  // deleteTask
 } from "../../controllers/TaskController/task.controller.js"
 
 import verifyToken  from "../../middleware/AuthMiddleware/auth.middleware.js";
@@ -23,4 +22,4 @@ router.patch("/updatetask/:id",verifyToken,updateTaskStatus);
 
 router.delete("/deletetask/:id",verifyToken, deleteTask)
 
-export default router;  
+export default router;

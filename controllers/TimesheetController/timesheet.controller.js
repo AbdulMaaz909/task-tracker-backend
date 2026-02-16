@@ -13,7 +13,8 @@ const TimeSheet = async (req, res) => {
       endTime,
       duration,
       description,
-      date
+      date,
+      user:req.user.id
     });
 
     res
@@ -75,9 +76,10 @@ const deleteTimeSheet = async (req, res) => {
   }
 };
 
-const getTimeSheetUsers = (req,res) => {
+const getTimeSheetUsers = async (req,res) => {
   try {
-    const {} = req.body;
+    const timeSheets = await Timesheet.find().populate("user","name email");
+    res.json(timeSheets);
     
   } catch (error) {
     console.error(error); 
