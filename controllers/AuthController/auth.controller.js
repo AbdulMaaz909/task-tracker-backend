@@ -89,7 +89,7 @@ const loginUser = async (req, res) => {
 
 const getAllUser = async (req,res) =>{
   try{
-    const users = await User.find({},"_id name email");
+    const users = await User.find({},"_id name email role");
     res.json(users);
   }catch(error){
     console.error("Error fetching users:", error);

@@ -7,6 +7,8 @@ import ChatbotRoute from "./routes/chatbot.route/chatbot.route.js"
 import TimeSheet from "./routes/timesheetroute/timesheet.route.js";
 import TaskRoute from "./routes/taskroute/task.route.js";
 import ExpenseRoute from "./routes/expenseroute/expense.route.js";
+import SalaryRoute from "./routes/salaryroute/salary.route.js";
+import MemoRoute from "./routes/memoroute/memo.route.js";
 
 dotenv.config();
 
@@ -25,6 +27,10 @@ app.use("/api",TaskRoute)
 app.use("/api",TimeSheet);
 
 app.use("/api",ExpenseRoute);
+
+app.use("/api",SalaryRoute);
+
+app.use("/api",MemoRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${PORT}`);
