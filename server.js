@@ -10,6 +10,8 @@ import TaskRoute from "./routes/taskroute/task.route.js";
 import ExpenseRoute from "./routes/expenseroute/expense.route.js";
 import SalaryRoute from "./routes/salaryroute/salary.route.js";
 import MemoRoute from "./routes/memoroute/memo.route.js";
+import ZoomRoute from "./routes/zoomtaskroute/zoomtask.route.js";
+
 
 dotenv.config();
 
@@ -32,6 +34,9 @@ app.use("/api",ExpenseRoute);
 app.use("/api",SalaryRoute);
 
 app.use("/api",MemoRoute);
+
+app.use("/api",ZoomRoute);
+
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import User from "../../models/user.model.js";
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv";
+import { sendEmail } from "../../config/mailConfig.js";
 
 
 // REGISTER USER
@@ -33,6 +34,22 @@ const registerUser = async (req, res) => {
     });
 
     await newUser.save();
+
+    try {
+      await sendEmail(
+        email,
+        "Welcome to Task Tracker 🎉",
+        `
+        <h2>Welcome, ${name} 👋</h2>
+        <p>Your account has been created successfully.</p>
+        <p>Start managing your tasks now 🚀</p>
+        <br/>
+        <p>– Task Tracker Team</p>
+        `
+      )
+    } catch (emailError) {
+      console.log("Email failed but user registered:", emailError.message);
+    }
 
     // 5. Respond success
     res.status(201).json({
